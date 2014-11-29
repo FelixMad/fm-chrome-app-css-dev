@@ -1,0 +1,27 @@
+{
+	"name": "CSSdev",
+	"version": "0.1",
+	"manifest_version": 2,
+	"description": "Extensión para editar CSSs con archivos en local",
+	"background": {
+		"page": "background.html"
+	},
+	"icons": {
+		"16": "img/icon16.png",
+		"48": "img/icon48.png",
+		"128": "img/icon128.png"
+	},
+	"permissions": [
+    "tabs",
+    "background",
+    "activeTab",
+    "http://*/*"
+	],
+	"browser_action":{
+		"default_icon": "img/icon16.png",
+		"default_title": "CSSdev"/*,
+		"default_popup": "popup.html"*/
+	},
+	"content_security_policy": "frame-src 'self';default-src 'none'; img-src 'self'; media-src 'self'; style-src 'self' 'unsafe-inline'; connect-src ; script-src 'self' 'unsafe-eval' ; object-src 'self' "
+
+}
