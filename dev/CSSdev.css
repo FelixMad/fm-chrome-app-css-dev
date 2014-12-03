@@ -1,0 +1,14 @@
+body{
+	background:red !important
+}
+
+.content-wrapper{
+	background:orange
+}
+
+#siteheader {
+	background: blue;
+}
+#siteheader {
+	background:green;
+}

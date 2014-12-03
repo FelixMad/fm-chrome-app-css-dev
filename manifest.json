@@ -2,6 +2,7 @@
 	"name": "CSSdev",
 	"version": "0.1",
 	"manifest_version": 2,
+	"minimum_chrome_version": "29",
 	"description": "Extensión para editar CSSs con archivos en local",
 	"background": {
 		"page": "background.html"
@@ -15,13 +16,31 @@
     "tabs",
     "background",
     "activeTab",
-    "http://*/*"
+    "http://*/*",
+    "identity",
+    "storage",
+    "https://ssl.gstatic.com/",
+    "https://www.googleapis.com/",
+    "https://accounts.google.com/",
+    "https://apis.google.com/"
 	],
+	"oauth2": {
+    "client_id": "721266730931-tcfgmhn09i9ot6hl28ol26f5u50n364h.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/drive",
+      "https://www.googleapis.com/auth/drive.file",
+      "https://www.googleapis.com/auth/drive.readonly",
+      "https://www.googleapis.com/auth/drive.install"
+    ]
+  },
 	"browser_action":{
 		"default_icon": "img/icon16.png",
-		"default_title": "CSSdev"/*,
-		"default_popup": "popup.html"*/
+		"default_title": "CSSdev",
+		"default_popup": "popup.html"
 	},
-	"content_security_policy": "frame-src 'self';default-src 'none'; img-src 'self'; media-src 'self'; style-src 'self' 'unsafe-inline'; connect-src ; script-src 'self' 'unsafe-eval' ; object-src 'self' "
-
+	"web_accessible_resources": [
+		"js/content_script.js",
+		"dev/*.css"
+	],
+	"content_security_policy": "frame-src 'self' https://accounts.google.com/ https://content.googleapis.com/; default-src 'none'; img-src 'self'; media-src 'self'; style-src 'self' 'unsafe-inline'; connect-src https://docs.google.com https://*.googleusercontent.com ; script-src 'self' 'unsafe-eval' https://apis.google.com ; object-src 'self' "
 }
