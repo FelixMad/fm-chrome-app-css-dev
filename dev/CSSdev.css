@@ -3,12 +3,11 @@ body{
 }
 
 .content-wrapper{
-	background:orange
-}
+	background: rgb(51, 76, 142);}
 
 #siteheader {
 	background: blue;
 }
 #siteheader {
-	background:green;
+	background: rgb(148, 190, 148);
 }

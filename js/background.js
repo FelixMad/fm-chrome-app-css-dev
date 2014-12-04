@@ -1,22 +1,27 @@
-function refreshLink(tabs){
-	var file = "../img/";
-	var icon = file + "inactive.png";
-
-	var patron = new RegExp(/html5rocks/);
-	if(patron.test(tabs[0].url)){
-		var icon = file + "active.png";
-		chrome.tabs.executeScript(null, {file: 'js/content_script.js'},null);
-	}
-	chrome.browserAction.setIcon({path: icon });
-};
+var patron = new RegExp(/html5rocks/);
 
 chrome.tabs.onUpdated.addListener(function(tabs,changeInfo, tab) {
-	if (changeInfo.status == 'loading') getLink(tabs);
+	if (changeInfo.status == 'loading'){
+		changeIcon(tabs);
+		loadCSS(tabs)
+	}
 });
 
-function getLink(tabs){
+chrome.tabs.onSelectionChanged.addListener(changeIcon);
+
+function loadCSS(tabs){
 	chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-		refreshLink(tabs);
+		if(patron.test(tabs[0].url)){
+			chrome.tabs.executeScript(null, {file: 'js/content_script.js'},null);
+		}
+	});
+};
+
+function changeIcon(tabs){
+	chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+		var file = "../img/";
+		var icon = file + "inactive.png";
+		if(patron.test(tabs[0].url)) icon = file + "active.png";
+		chrome.browserAction.setIcon({path: icon});
 	});	
-	return
-}
+};
